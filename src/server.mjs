@@ -67,6 +67,6 @@ app.get('*', (req, res) => {
 /*app.listen().then(({ url }) => {
 	console.log(`🚀  Server ready at ${url}`);
 });*/
-const listener = app.listen(5000, () => {
+const listener = app.listen(8080, () => {
 	console.log(`🚀 Server ready at ${listener.address().port}${server.graphqlPath}`);
 });
