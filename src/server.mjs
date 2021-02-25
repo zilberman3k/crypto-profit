@@ -9,9 +9,6 @@ import path, { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-console.log(__filename);
-console.log(__dirname);
-
 const app = express();
 
 // noinspection ES6AwaitOutsideAsyncFunction
@@ -52,21 +49,12 @@ const server = new ApolloServer({
 });
 
 server.applyMiddleware({ app });
+// static content //
 app.use(express.static(path.join(__dirname, '/../client/build')));
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname + '/../client/build/index.html'));
 });
 
-/*app.use((req, res) => {
-	res.status(200);
-	res.send('Hello!');
-	res.end();
-});*/
-
-// The `listen` method launches a web server.
-/*app.listen().then(({ url }) => {
-	console.log(`🚀  Server ready at ${url}`);
-});*/
 const listener = app.listen(8080, () => {
 	console.log(`🚀 Server ready at ${listener.address().port}${server.graphqlPath}`);
 });
